@@ -1,2 +1,0 @@
-# webpack-research
-webpack-research
