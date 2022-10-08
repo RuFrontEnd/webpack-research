@@ -6,6 +6,7 @@ module.exports = {
   mode: "development",
   entry: {
     index: "./src/index.js",
+    another: "./src/another.js",
   },
   output: {
     filename: "[name].bundle.js",
@@ -37,4 +38,9 @@ module.exports = {
   // 預設 8080 port
   // 會運行 output files
   // 須指定 mode，不然無法啟動 webpack server
+  optimization: {
+    splitChunks: {
+      chunks: "all",
+    },
+  },
 };
