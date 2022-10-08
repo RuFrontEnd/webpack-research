@@ -1,9 +1,14 @@
 const path = require("path");
+const HtmlWebpackPlugin = require("html-webpack-plugin");
+const { CleanWebpackPlugin } = require("clean-webpack-plugin");
 
 module.exports = {
-  entry: "./src/index.js",
+  entry: {
+    app: "./src/index.js",
+    print: "./src/print.js",
+  },
   output: {
-    filename: "bundle.js",
+    filename: "[name].bundle.js",
     path: path.resolve(__dirname, "dist"),
   },
   module: {
@@ -18,4 +23,10 @@ module.exports = {
       },
     ],
   },
+  plugins: [
+    new CleanWebpackPlugin(), // 自動清理舊的 output files p.s.中文文檔對於此套件的描述尚未更新
+    new HtmlWebpackPlugin({
+      title: "Output Management",
+    }), // 用於自動建構 html file，並且自動解析應該引入的 entry files
+  ],
 };
