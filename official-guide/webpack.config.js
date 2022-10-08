@@ -10,6 +10,7 @@ module.exports = {
   output: {
     filename: "[name].bundle.js",
     path: path.resolve(__dirname, "dist"),
+    // publicPath: '/'
   },
   module: {
     rules: [
@@ -29,4 +30,8 @@ module.exports = {
       title: "Output Management",
     }), // 用於自動建構 html file，並且自動解析應該引入的 entry files
   ],
+  mode: "development", // 須指定，不然無法啟動 webpack server
+  devServer: {
+    port: 6060, // 設置 port 號
+  }, // webpack server 相關設定 / webpack-dev-server 運行/ 預設 8080 port / 會運行 output files
 };
