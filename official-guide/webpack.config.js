@@ -3,9 +3,18 @@ const HtmlWebpackPlugin = require("html-webpack-plugin");
 const { CleanWebpackPlugin } = require("clean-webpack-plugin");
 
 module.exports = {
+  mode: "development",
   entry: {
-    app: "./src/index.js",
-    print: "./src/print.js",
+    index: {
+      import: "./src/index.js",
+      dependOn: "shared",
+    },
+    another: {
+      import: "./src/another.js",
+      dependOn: "shared",
+    },
+    shared: "lodash",
+    // app: "./src/index.js",
   },
   output: {
     filename: "[name].bundle.js",
@@ -30,8 +39,16 @@ module.exports = {
       title: "Output Management",
     }), // 用於自動建構 html file，並且自動解析應該引入的 entry files
   ],
-  mode: "development", // 須指定，不然無法啟動 webpack server
   devServer: {
     port: 6060, // 設置 port 號
-  }, // webpack server 相關設定 / webpack-dev-server 運行/ 預設 8080 port / 會運行 output files
+  }, // webpack server 相關設定
+  // webpack-dev-server 運行
+  // 預設 8080 port
+  // 會運行 output files
+  // 須指定 mode，不然無法啟動 webpack server
+  optimization: {
+    splitChunks: {
+      chunks: "all",
+    },
+  },
 };
