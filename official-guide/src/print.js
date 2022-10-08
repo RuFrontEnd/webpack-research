@@ -1,3 +1,5 @@
 export default function printMe() {
-  console.log("I get called from print.js!");
+  return import("lodash").then(({ default: _ }) => {
+    console.log("I get called from print.js!");
+  });
 }
